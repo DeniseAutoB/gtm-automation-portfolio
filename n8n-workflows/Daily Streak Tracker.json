@@ -1,0 +1,336 @@
+{
+  "name": "Daily Streak Tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst commits = items.filter(i => i.json.sha);\nconst count = commits.length;\nconst latest = count ? commits[0].json.commit.message.split('\\n')[0] : '';\n\nreturn [{\n  json: {\n    date: $now.toFormat('yyyy-MM-dd'),\n    worked: count > 0 ? 'Yes' : 'No',\n    commits: count,\n    latest: latest\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "8639581e-62e2-4f4e-bb9f-5a39e7906400",
+      "name": "Day Summary"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 21
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "35715d1d-dd1e-49d9-920c-3327006d7adf",
+      "name": "Daily 9pm"
+    },
+    {
+      "parameters": {
+        "url": "https://api.github.com/repos/DeniseAutoB/gtm-automation-portfolio/commits",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "since",
+              "value": "={{ $now.startOf('day').toUTC().toISO() }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "n8n"
+            },
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "2095e15c-ef23-4f92-948a-318bc9b69e05",
+      "name": "Get GitHub Commits",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1nq3H50FblqBnNts1-tuKPFrZUdXw1JVGgP9DkjCJXiQ",
+          "mode": "list",
+          "cachedResultName": "GTM Streak Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nq3H50FblqBnNts1-tuKPFrZUdXw1JVGgP9DkjCJXiQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Streak Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nq3H50FblqBnNts1-tuKPFrZUdXw1JVGgP9DkjCJXiQ/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        576,
+        0
+      ],
+      "id": "8ecdf77a-699e-4ed3-a810-32480ed1ca3d",
+      "name": "Read Streak Log",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nxDFSn1LXdSodiAE",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const today = $('Day Summary').first().json;\nconst rows = $input.all().map(i => i.json).filter(r => r.Date);\nconst last = rows.length ? rows[rows.length - 1] : null;\nconst prevStreak = last ? Number(last.Streak) || 0 : 0;\nconst restUsed = rows.slice(-6).some(r => r['Rest day'] === 'Yes');\n\nlet streak, rest = 'No';\nif (today.worked === 'Yes') {\n  streak = prevStreak + 1;\n} else if (!restUsed && prevStreak > 0) {\n  streak = prevStreak;\n  rest = 'Yes';\n} else {\n  streak = 0;\n}\n\nreturn [{ json: {\n  'Date': today.date,\n  'Worked': today.worked,\n  'Commits': today.commits,\n  'Rest day': rest,\n  'Streak': streak,\n  'Latest commit message': today.latest\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        0
+      ],
+      "id": "63a770d5-0b97-40c5-a730-90766cdd91f3",
+      "name": "Calculate Streak"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1nq3H50FblqBnNts1-tuKPFrZUdXw1JVGgP9DkjCJXiQ",
+          "mode": "list",
+          "cachedResultName": "GTM Streak Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nq3H50FblqBnNts1-tuKPFrZUdXw1JVGgP9DkjCJXiQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Streak Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nq3H50FblqBnNts1-tuKPFrZUdXw1JVGgP9DkjCJXiQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Worked",
+              "displayName": "Worked",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Commits",
+              "displayName": "Commits",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Rest day",
+              "displayName": "Rest day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Streak",
+              "displayName": "Streak",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Latest commit message",
+              "displayName": "Latest commit message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1024,
+        0
+      ],
+      "id": "16fd642b-382f-40ac-bb8b-4d859730d111",
+      "name": "Log to Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nxDFSn1LXdSodiAE",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0C718AL6HG",
+          "mode": "list",
+          "cachedResultName": "reply-alerts"
+        },
+        "text": "=📅 {{ $json.Date }}: {{ $json.Worked === 'Yes' ? '✅ Worked' : '⚠️ No commits' }}\n🔥 Streak: {{ $json.Streak }} day(s){{ $json['Rest day'] === 'Yes' ? ' (rest day used)' : '' }}\n🛠️ Commits: {{ $json.Commits }}\n💬 Latest: {{ $json['Latest commit message'] }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.7,
+      "position": [
+        1248,
+        0
+      ],
+      "id": "2e747d13-3d7a-4f03-ac58-83e613f0f4f2",
+      "name": "Post to Slack",
+      "webhookId": "913b7671-913e-49fb-8d8d-f131201709e6",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "j2HMmliho2m61apO",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Day Summary": {
+      "main": [
+        [
+          {
+            "node": "Read Streak Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily 9pm": {
+      "main": [
+        [
+          {
+            "node": "Get GitHub Commits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get GitHub Commits": {
+      "main": [
+        [
+          {
+            "node": "Day Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Streak Log": {
+      "main": [
+        [
+          {
+            "node": "Calculate Streak",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Streak": {
+      "main": [
+        [
+          {
+            "node": "Log to Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to Sheet": {
+      "main": [
+        [
+          {
+            "node": "Post to Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "timezone": "America/Jamaica",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "3222467d-427a-4fa4-a5e4-3b66b457b94b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cb9a3c5cf223bfa291c582dd494378e5fc0758e677cfcb7a6c423af91296cd49"
+  },
+  "nodeGroups": [],
+  "id": "s5Bjnylu7xAkd40e",
+  "tags": []
+}
