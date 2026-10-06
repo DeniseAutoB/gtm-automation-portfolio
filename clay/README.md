@@ -1,5 +1,11 @@
-Clay Table Builds
 # Clay Table Builds
+
+## Brief
+Offer: Done-for-you bookkeeping cleanup and monthly close for small agencies
+Ideal customer: US digital marketing agencies, 10-50 employees
+Target roles: Founder/Owner, COO, Head of Finance or Operations
+Trigger signals: Hiring for a finance/bookkeeping role, recent growth, or messy-ops language on their site
+Goal of the list: 40-50 prospects with verified emails and a personalized opener
 
 **One-line outcome:** [What it does and what it achieves]
 
