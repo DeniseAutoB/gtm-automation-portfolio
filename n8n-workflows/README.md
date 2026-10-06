@@ -27,3 +27,10 @@
 ## What I'd improve
 - [Next step or limitation]
 - [Next step or limitation]
+
+## Daily Streak Tracker
+Runs every night at 9pm (Jamaica time). Checks my builds repo for commits that day, calculates a work streak with one rest day per week, logs it to a Google Sheet, and posts the result to Slack.
+
+Flow: Schedule > GitHub commits > Day summary > Read log > Calculate streak > Log to sheet > Slack
+
+File: [daily-streak-tracker.json](daily-streak-tracker.json)
