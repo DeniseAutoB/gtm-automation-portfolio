@@ -1,6 +1,6 @@
 # Prospect List: Bookkeeping Cleanup for Agencies
 
-**Outcome:** 38 US marketing agencies narrowed to 10 contactable prospects with verified emails and fact-checked openers.
+**Outcome:** 38 US marketing agencies narrowed to 10 contactable prospects with verified emails and fact-checked openers. Two(2) companies show 54-56 employees in Clay's profile data despite matching the 11-50 filter.
 
 ## The problem
 Outbound lists fail on data quality: wrong countries, companies that aren't a fit, contacts with no decision-making power, and unverified emails. I built a small list and cleaned it at every stage, so each row left is one I would actually email.
