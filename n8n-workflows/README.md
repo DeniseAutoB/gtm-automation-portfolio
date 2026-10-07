@@ -1,4 +1,4 @@
-# n8n Automatiion Workflows
+# n8n Automation Workflows
 
 **One-line outcome:** [What it does and what it achieves]
 
@@ -34,3 +34,5 @@ Runs every night at 9pm (Jamaica time). Checks my builds repo for commits that d
 Flow: Schedule > GitHub commits > Day summary > Read log > Calculate streak > Log to sheet > Slack
 
 File: [daily-streak-tracker.json](daily-streak-tracker.json)
+
+![Daily streak tracker](n8n-streak-tracker.png)
