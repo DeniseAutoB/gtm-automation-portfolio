@@ -41,3 +41,13 @@ About [236.10] of 1,000 free-plan credits used.
 - Add a second email provider for the 4 contacts with no result
 - Score companies by hiring signals for finance roles
 - Pull a bigger starting list so more rows survive each filter
+
+- ## Screenshots
+**Company search filters**
+![Company search filters](clay-filters.png)
+
+**Starting list, before enrichment**
+![Starting list](clay-before.png)
+
+**Final table (contact details hidden)**
+![Final table](clay-final.png)
