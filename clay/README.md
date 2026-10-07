@@ -18,7 +18,7 @@ Outbound lists fail on data quality: wrong countries, companies that aren't a fi
 | Contacts after removing non-US rows, poor fits, and rows with no decision-maker | 14 |
 | Work emails found | 10 |
 | Emails verified valid | 10 |
-| Openers hand-checked against company websites | 10 ([X] correct, [Y] fixed) |
+| Openers hand-checked against company websites | 10 ([9] correct, [1] fixed) |
 
 ## Workflow
 Company search > Company enrichment > People search (Surfe, with Icypeas as a second source) > Work email finder > ZeroBounce verification > AI opener > Manual fact-check
@@ -32,7 +32,7 @@ Clay (search, enrichment, AI column), Surfe, Icypeas, ZeroBounce
 - One email domain didn't match the company name, which is why I compare domains before trusting a verified email.
 
 ## Credits
-About [X] of 1,000 free-plan credits used.
+About [236.10] of 1,000 free-plan credits used.
 
 ## Files
 - [prospect-list-sample - Prospects (redacted).csv](<prospect-list-sample - Prospects (redacted).csv>): company, domain, industry, size, state, email status, and the checked opener. Contact emails, last names, and LinkedIn links are not included.
