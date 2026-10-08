@@ -1,0 +1,12 @@
+# Cold Email Deliverability Checklist
+- [ ] Sending domain is separate from the main brand domain
+- [ ] Domain privacy on, registrar login secured with 2FA
+- [ ] MX, SPF (single record), DKIM, and DMARC records live and verified
+- [ ] DMARC starts at p=none, then tightens after reviewing reports
+- [ ] Test message passes SPF, DKIM, and DMARC in Gmail headers
+- [ ] mail-tester score reviewed and issues fixed
+- [ ] Mailboxes warmed up gradually before any campaign
+- [ ] Low daily volume per mailbox, with bounce and complaint rates watched
+- [ ] List verified before sending, with bad addresses removed
+- [ ] Plain text, one clear ask, working unsubscribe line
+- [ ] No real outreach until warm-up is done
