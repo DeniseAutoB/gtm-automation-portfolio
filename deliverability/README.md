@@ -19,13 +19,16 @@ Cold email only works if it reaches the inbox. I set up a practice domain the wa
 ## Tests
 - Gmail "Show original": SPF PASS, DKIM PASS, DMARC PASS
 - mail-tester.com: 10/10
-- [add note on the orange "message could be improved" item]
+- mail-tester flagged one item: no List-Unsubscribe header. That header lets recipients unsubscribe in one
+  click and is expected on bulk mail. A single test message doesn't need it, but any real campaign should
+  include an unsubscribe option (many outreach tools can add the header, so check the one I use).
 
 ## Screenshots
 ![DNS records](dns-records.png)
 ![Zoho verification](zoho-mx-spf-dkim.png)
 ![Gmail headers](gmail-headers.png)
 ![mail-tester](mail-tester.png)
+![mail-tester breakdown](mail-tester-review.png)
 
 ## What I'd do before real outreach
 - Warm up the mailboxes gradually for a few weeks before any campaign
