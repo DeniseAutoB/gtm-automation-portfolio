@@ -37,6 +37,10 @@ Cold email only works if it reaches the inbox. I set up a practice domain the wa
 - Verify every list first (as I did in the Clay build) to keep bounces down
 - Move DMARC from monitoring to a stricter policy once the reports look clean
 - Never send cold email from a main brand domain
+- Send DMARC aggregate reports to a free report parser, so a misconfigured tool sending as my domain would
+  show up in a readable dashboard
+- Confirm the List-Unsubscribe and one-click headers on a real campaign message in Gmail's "Show original",
+  and test that the unsubscribe link works
 
 ## Limits of this test
 A passing test shows the setup is correct. It doesn't show inbox placement at volume, because that depends on sender reputation, which a new domain hasn't built yet. This domain has sent no outreach.
