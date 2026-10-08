@@ -10,6 +10,8 @@ Cold email only works if it reaches the inbox. I set up a practice domain the wa
 2. Created a mailbox with Zoho Mail's free plan and verified domain ownership with a TXT record
 3. Added three MX records, one SPF record, one DKIM record, and a DMARC record in monitoring mode (p=none)
 4. Confirmed MX, SPF, and DKIM as verified in the Zoho admin console
+5. DMARC aggregate reports go to dmarcian for weekly digests, with my own mailbox as a backup. This came from feedback
+   on my LinkedIn post.
 
 ## The records, in plain English
 - **SPF:** lists the servers allowed to send mail for the domain
@@ -22,6 +24,8 @@ Cold email only works if it reaches the inbox. I set up a practice domain the wa
 - mail-tester flagged one item: no List-Unsubscribe header. That header lets recipients unsubscribe in one
   click and is expected on bulk mail. A single test message doesn't need it, but any real campaign should
   include an unsubscribe option (many outreach tools can add the header, so check the one I use).
+- MXToolbox flags "DMARC policy not enabled" because I'm intentionally at p=none (monitoring). I'll move to quarantine
+  only after reviewing dmarcian's reports.
 
 ## Screenshots
 ![DNS records](dns-records.png)
