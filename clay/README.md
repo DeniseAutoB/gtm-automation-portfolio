@@ -18,7 +18,7 @@ Outbound lists fail on data quality: wrong countries, companies that aren't a fi
 | Contacts after removing non-US rows, poor fits, and rows with no decision-maker | 14 |
 | Work emails found | 10 |
 | Emails verified valid | 10 |
-| Openers hand-checked against company websites | 10 ([9] correct, [1] fixed) |
+| Openers hand-checked against company websites | 10 (9 correct, 1 fixed) |
 
 ## Workflow
 Company search > Company enrichment > People search (Surfe, with Icypeas as a second source) > Work email finder > ZeroBounce verification > AI opener > Manual fact-check
