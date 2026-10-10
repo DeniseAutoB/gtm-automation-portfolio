@@ -109,3 +109,9 @@ Denise
 ## What I'd improve
 - Use hiring signals (for example, a posted finance role) as a trigger for a third variant
 - Add a LinkedIn touch between emails 1 and 2
+
+**Bookkeeping Cleanup Test Campaign**
+![Bookkeeping Cleanup Test Campaign](test-campaign.png)
+
+**Lead List**
+![Lead List](test-leads.png)
