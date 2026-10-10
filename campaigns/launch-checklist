@@ -1,0 +1,12 @@
+# Campaign Launch Checklist
+- [ ] List verified, with bounces removed
+- [ ] Every merged fact re-checked against the company's own site
+- [ ] Sending domain authenticated (SPF, DKIM, DMARC pass) and DMARC reports going to a parser
+- [ ] Mailboxes warmed up gradually, on a plan that supports SMTP/IMAP
+- [ ] Daily limit low, and new-lead cap set below the daily cap
+- [ ] Plain text, tracking off, opt-out line present
+- [ ] One-click unsubscribe header confirmed in Gmail "Show original"
+- [ ] Preview checked for every merge field
+- [ ] Variants sent as separate campaigns
+- [ ] Physical address and sender identity in place (check CAN-SPAM)
+- [ ] Review bounces and complaints after the first batch, and pause if either rises
