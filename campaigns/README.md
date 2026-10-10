@@ -110,6 +110,26 @@ Denise
 - Use hiring signals (for example, a posted finance role) as a trigger for a third variant
 - Add a LinkedIn touch between emails 1 and 2
 
+  ## Staging build in Instantly (Day 4)
+  I built Variant A as a campaign in Instantly with three test leads (fake names, plus-addressed variants of
+  my own email). It is a draft and nothing has been sent: Sent = 0, and no sending account is connected.
+
+**What I configured**
+- 3-step sequence (day 0, +3, +4) with `{{opener}}`, first name, and company merged from the lead file
+- Plain text, open and link tracking off, stop on reply on, one-click unsubscribe header on
+- 30 emails/day cap, with a lower cap on new leads so follow-ups have room
+- Bounce protection on, risky emails excluded
+
+**What I could not test**
+- Real sending, because the tool needs a connected mailbox and my free Zoho plan has no IMAP/SMTP access
+- That the unsubscribe header works in Gmail ("Show original" and the Unsubscribe link). I'll test that on the first real message
+
+**A/B structure:** Variant B will be a separate campaign, so every lead gets one whole sequence and the split
+  is clean.
+
+**What I fixed:** my openers imported with stray quotation marks from the CSV, which would have shown at the 
+  start of every email. I caught it in the lead table and cleaned it before building the sequence.
+
 **Bookkeeping Cleanup Test Campaign**
 ![Bookkeeping Cleanup Test Campaign](test-campaign.png)
 
