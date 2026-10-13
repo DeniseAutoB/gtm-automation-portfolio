@@ -1,0 +1,82 @@
+{
+  "name": "Clay Lead to HubSpot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "clay-lead",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cfceeb80-66f9-4a8a-b0c5-908fe20d9fa7",
+      "name": "Webhook",
+      "webhookId": "44e4df2c-eeda-4407-94e7-f10c980bff56"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "email": "={{ $json.body.email }}",
+        "additionalFields": {
+          "companyName": "={{ $json.body.company }}",
+          "customPropertiesUi": {
+            "customPropertiesValues": [
+              {
+                "property": "=lead_source",
+                "value": "Clay"
+              }
+            ]
+          },
+          "firstName": "={{ $json.body.first_name }}",
+          "lastName": "={{ $json.body.last_name }}"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "0cc40258-35b1-4265-a09e-521cd377cfe8",
+      "name": "Create or update a contact",
+      "credentials": {
+        "hubspotOAuth2Api": {
+          "id": "gk1oAl8SHwZmDtk3",
+          "name": "HubSpot account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create or update a contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "7d8d8b00-7350-4735-a83c-ed3f6ead2ce9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cb9a3c5cf223bfa291c582dd494378e5fc0758e677cfcb7a6c423af91296cd49"
+  },
+  "nodeGroups": [],
+  "id": "HwI33McwDNC4QXsz",
+  "tags": []
+}

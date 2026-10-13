@@ -1,0 +1,77 @@
+{
+  "name": "Reply Alert to Slack",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "reply-alert",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "df37fe89-a8e3-45fa-9fb7-49d07e3471ce",
+      "name": "Webhook",
+      "webhookId": "bc267c9d-f76e-498c-80ee-7dfe9f8b0035"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0C718AL6HG",
+          "mode": "list",
+          "cachedResultName": "reply-alerts"
+        },
+        "text": "=   📩 Reply from {{ $json.body.name }} at {{ $json.body.company }}: {{ $json.body.reply_text }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.7,
+      "position": [
+        224,
+        0
+      ],
+      "id": "36a6c70e-faa2-4dc3-9537-5f094b9d0451",
+      "name": "Send a message",
+      "webhookId": "6ba2dfae-8754-44a9-8d92-ac6d5232daf0",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "j2HMmliho2m61apO",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "22f2dac0-e4bd-44d6-a1ea-d7bdf4ebfc09",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cb9a3c5cf223bfa291c582dd494378e5fc0758e677cfcb7a6c423af91296cd49"
+  },
+  "nodeGroups": [],
+  "id": "KEiLqGuLhaiz6Bwh",
+  "tags": []
+}
