@@ -3,7 +3,7 @@ A compilation of my workflows, campaigns etc.
 
 # GTM Automation Portfolio
 
-Hands-on builds in outbound systems, enrichment, and workflow automation.
+Hands-on builds in Outbound Systems, Enrichment, and Workflow Automation.
 All data in this repo is sample or test data.
 
 ## Projects
@@ -16,4 +16,4 @@ All data in this repo is sample or test data.
 | Scripts | CSV cleaner and scraper built with Claude Code | [scripts/](scripts/) |
 
 ## About
-[2-3 sentences: your background in accounting and operations, and how it shapes the way you build: accuracy, clean data, and documented processes.]
+Accounting and Finance Operations professional (8+ years) moving into GTM Automation Engineering. I'm building in public: Clay, n8n, Cold Email Systems, and Deliverability.
