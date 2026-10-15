@@ -27,7 +27,7 @@ Credentials (Google Sheets, Slack, HubSpot) are stored in n8n and are not in the
 ![Streak tracker run](n8n-streak-tracker.png)
 
 ## 2. Clay Lead to HubSpot
-**Problem:** an enriched lead from a prospecting table should land in the CRM without copy and paste.
+**Problem:** An enriched lead from a prospecting table should land in the CRM without copy and paste.
 
 **Flow:** Webhook (POST) > HubSpot: Create or Update Contact
 
@@ -36,7 +36,7 @@ Credentials (Google Sheets, Slack, HubSpot) are stored in n8n and are not in the
 - The HubSpot node matches on email, so a repeat lead updates the same contact and doesn't create a duplicate
 - Sets a custom contact property, Lead source, to `Clay`
 
-**Tested with:** a fake lead sent from a PowerShell script. The contact appeared in HubSpot with Lead source = Clay.
+**Tested with:** A fake lead sent from a PowerShell script. The contact appeared in HubSpot with Lead source = Clay.
 
 ![Clay lead to HubSpot](clay-lead-to-hubspot.png)
 
@@ -54,9 +54,8 @@ Credentials (Google Sheets, Slack, HubSpot) are stored in n8n and are not in the
 ---
 
 ## What broke, and what I did
-- **HubSpot had moved UI-created private apps to "Legacy,"** so I couldn't follow the usual private-app route. Instead I signed in to HubSpot directly from the n8n node while setting it up, which created the connection without a token.
+- **HubSpot had moved UI-created private apps to "Legacy,"** so I couldn't follow the usual private-app route. Instead, I signed in to HubSpot directly from the n8n node while setting it up, which created the connection without a token.
 - **The Lead source property didn't show as a column in HubSpot.** The workflow had written the value, but I had to add the column to the table view to see it.
-- **My test command failed in Command Prompt**, because `Invoke-RestMethod` only exists in PowerShell.
 - **A typo in the webhook path** (an extra letter) returned a 404. The error message named the exact path it couldn't find, which is how I spotted it.
 - **Test URLs only respond while n8n is listening**, and only once. Production URLs need the workflow switched on.
 - **Pasting error text back into the terminal** caused confusing parser errors. I now keep test commands as variables in a text file.
