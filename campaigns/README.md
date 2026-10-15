@@ -1,6 +1,6 @@
-# Cold Email Sequences: Bookkeeping Cleanup for Agencies
+# Cold Email Campaigns: Two Variants, Built and Tested in Instantly
 
-**Outcome:** Two 3-email sequence variants for a bookkeeping-cleanup offer, each with a hypothesis and a measurement plan, built on the fact-checked openers from my Clay list. Drafts only: Nothing has been sent.
+**Outcome:** Two 3-email sequence variants for a bookkeeping-cleanup offer, built as campaigns in Instantly and test-sent to inboxes I own. SPF, DKIM, and DMARC passed, the one-click unsubscribe headers were present, and the unsubscribe link worked. No real prospect was contacted.
 
 ## The offer
 Done-for-you bookkeeping cleanup and monthly close for small US marketing agencies (11-50 employees). This is a practice offer for the portfolio.
@@ -10,13 +10,12 @@ Done-for-you bookkeeping cleanup and monthly close for small US marketing agenci
 - One soft ask per email (an interest question, not a calendar link)
 - No claimed results, clients, or conversations I haven't had
 - An opt-out line in every email, plus the technical one-click unsubscribe header added by the sending tool
-- Merge fields: `{{opener}}` (the fact-checked line from Clay, which already starts with the first name), `{{first_name}}`, `{{company}}`
+- Merge fields: `{{opener}}` (the fact-checked line from my Clay list, which already starts with the first name), first name, and company
 
 ## Variant A: "Clean books, clear numbers"
 **Hypothesis:** founders respond more to a visibility benefit (seeing margin by client and what they can afford to hire).
 
-**Email 1 (day 0)**
-Subject: `Month-End at {{company}}`
+**Email 1 (day 0)** | Subject: `month-end at {{company}}`
 ```
 {{opener}}
 
@@ -27,8 +26,7 @@ Is month-end something you'd like off your plate? If this isn't relevant, tell m
 Denise
 ```
 
-**Email 2 (day 3)**
-Subject: `Re: Month-End at {{company}}`
+**Email 2 (day 3)** | Subject: blank, so it sends in the same thread
 ```
 Hi {{first_name}},
 
@@ -39,8 +37,7 @@ Would a short call on how you handle close today be useful? Happy to drop it if 
 Denise
 ```
 
-**Email 3 (day 7)**
-Subject: `Closing the Loop`
+**Email 3 (day 7)** | Subject: `closing the loop`
 ```
 Hi {{first_name}},
 
@@ -54,8 +51,7 @@ Denise
 ## Variant B: "Agency-specific pain"
 **Hypothesis:** agency-specific language gets more replies because it signals relevance.
 
-**Email 1 (day 0)**
-Subject: `Agency Bookkeeping`
+**Email 1 (day 0)** | Subject: `agency bookkeeping`
 ```
 {{opener}}
 
@@ -66,8 +62,7 @@ Is bookkeeping handled in-house, or by someone outside the team? If this isn't r
 Denise
 ```
 
-**Email 2 (day 4)**
-Subject: `re: Agency Bookkeeping`
+**Email 2 (day 4)** | Subject: blank, so it sends in the same thread
 ```
 Hi {{first_name}},
 
@@ -78,8 +73,7 @@ Worth a quick reply on how you handle it today?
 Denise
 ```
 
-**Email 3 (day 9)**
-Subject: `Should I close this out?`
+**Email 3 (day 9)** | Subject: `should I close this out?`
 ```
 Hi {{first_name}},
 
@@ -90,48 +84,67 @@ If it ever isn't, reply and I'll send a short outline of how I'd approach it.
 Denise
 ```
 
-## Example of the personalization (from my Clay list)
-`[First name], Refine Labs has helped 300+ B2B tech companies since 2019.` (checked against their site before use)
-
 ## Test plan
-- **Split:**Half the list gets A and half gets B, assigned at random, with the same send times and the same sending mailbox setup
-- **Measure:** Positive replies per 100 delivered (the main number), total reply rate, bounce rate, and unsubscribes. I wouldn't use opens, since open tracking is unreliable
-- **Sample size:** My list has 10 contacts, which is far too few to call a winner. A real test needs a few hundred delivered emails per variant. This plan shows how I'd run it, and I'm not claiming results
-- **Decision rule:** Pick the variant with more positive replies once each has enough volume, then test one change at a time (subject line, first line, ask)
-- **Guardrails:** Keep bounces and spam complaints very low, pause a variant if either rises, and verify every list before sending
+- **Split:** half the list gets A and half gets B, assigned at random, with the same send times and the same mailbox setup
+- **Measure:** positive replies per 100 delivered (the main number), total reply rate, bounce rate, and unsubscribes. I wouldn't use opens, since open tracking is unreliable
+- **Sample size:** my list has 10 contacts, which is far too few to call a winner. A real test needs a few hundred delivered emails per variant. This plan shows how I'd run it, and I'm not claiming results
+- **Decision rule:** pick the variant with more positive replies once each has enough volume, then test one change at a time (subject line, first line, ask)
+- **Guardrails:** keep bounces and spam complaints very low, pause a variant if either rises, and verify every list before sending
+
+## Build in Instantly
+Each variant is its own campaign, so every lead receives one whole sequence and the split stays clean. Both were built as drafts first, using a lead file of fake names and plus-addressed variants of inboxes I own.
+
+**Settings**
+- Plain text, with open tracking and link tracking off
+- Stop sending on reply
+- One-click unsubscribe header on
+- Bounce protection on, risky emails excluded
+- 30 emails a day per campaign, with a lower cap on new leads so follow-ups have room
+- Weekdays and business hours only, with a 9-minute minimum gap plus a random extra between sends
+
+![Both campaigns as drafts, Sent 0](engage-list.png)
+![Sequence editor](editor.png)
+![Settings](settings1.png)
+![Settings](settings2.png)
+
+## Self-test: a send through my own domain
+To test real sending, I connected a Google Workspace mailbox on my practice domain to Instantly and sent Variant A to three test addresses that I own. My earlier free Zoho mailbox had no IMAP/SMTP access, so it couldn't connect.
+
+**Confirmed**
+- SPF, DKIM, and DMARC all passed on the delivered messages (checked in Gmail's "Show original")
+- The `List-Unsubscribe` and `List-Unsubscribe-Post` (one-click) headers were present
+- The unsubscribe link from the header opened a page that let me unsubscribe
+- The opener, first name, and company merged correctly, with no stray characters
+- The messages went out as plain text
+- All three test messages reached my inbox [Primary tab / Promotions tab: fill in what you saw], not spam
+
+![Authentication results](headers-pass.png)
+![Unsubscribe headers](unsubscribe-headers.png)
+![Unsubscribe page](unsubscribe-test.png)
+
+**Not confirmed**
+- Gmail did not show its own Unsubscribe link next to the sender name, even though the header is there
+- Inbox placement for recipients other than me. These were my own addresses, and I had already exchanged mail
+  with the sender, so the result says little about how a stranger's filter would treat a brand-new domain with
+  no sending history
+ 
+## What broke
+- **A launched campaign didn't send.** Instantly's Diagnose showed it was outside its sending window and paused. I widened the window for the test and restored it afterward
+- **My first launch sent two emails to test addresses I couldn't open.** I corrected the lead addresses and re-ran the test from a duplicate campaign
+- **The sent copies in the sending inbox showed no SPF/DKIM results.** The receiving server adds those, so I checked a copy delivered to an outside inbox
+- **My CSV imported the openers with stray quotation marks**, which would have opened every email with a `"`. I caught it in the lead table before building the sequences
+- **Step 2 had a second variant enabled by default**, which would have mixed A and B inside one sequence
 
 ## Before any real send
-- Warm up the mailboxes and use a mailbox plan that works with an outreach tool
-- Add a sender identity and a physical mailing address in the footer, and check current requirements (for the US, CAN-SPAM)
-- Confirm the one-click unsubscribe header in Gmail's "Show original"
+- Warm up the mailboxes gradually, and keep daily volume low
+- Use a real offer and identity, and add a physical address and sender details (check current CAN-SPAM requirements)
+- Review dmarcian's reports to confirm nothing unexpected sends as my domain
 - Re-check every merged fact against the company's own site
+- Verify the list, and remove bounces before sending
 
 ## What I'd improve
 - Use hiring signals (for example, a posted finance role) as a trigger for a third variant
 - Add a LinkedIn touch between emails 1 and 2
+- Run the split on a few hundred contacts per variant, and judge on positive replies
 
-  ## Staging build in Instantly (Day 4)
-  I built Variant A as a campaign in Instantly with three test leads (fake names, plus-addressed variants of
-  my own email). It is a draft and nothing has been sent: Sent = 0, and no sending account is connected.
-
-**What I configured**
-- 3-step sequence (day 0, +3, +4) with `{{opener}}`, first name, and company merged from the lead file
-- Plain text, open and link tracking off, stop on reply on, one-click unsubscribe header on
-- 30 emails/day cap, with a lower cap on new leads so follow-ups have room
-- Bounce protection on, risky emails excluded
-
-**What I could not test**
-- Real sending, because the tool needs a connected mailbox and my free Zoho plan has no IMAP/SMTP access
-- That the unsubscribe header works in Gmail ("Show original" and the Unsubscribe link). I'll test that on the first real message
-
-**A/B structure:** Variant B will be a separate campaign, so every lead gets one whole sequence and the split
-  is clean.
-
-**What I fixed:** my openers imported with stray quotation marks from the CSV, which would have shown at the 
-  start of every email. I caught it in the lead table and cleaned it before building the sequence.
-
-**Bookkeeping Cleanup Test Campaign**
-![Bookkeeping Cleanup Test Campaign](test-campaign.png)
-
-**Lead List**
-![Lead List](test-leads.png)
+See also the [launch checklist](launch-checklist.md).
