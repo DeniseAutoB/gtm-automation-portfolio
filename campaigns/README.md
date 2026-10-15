@@ -116,7 +116,7 @@ To test real sending, I connected a Google Workspace mailbox on my practice doma
 - The unsubscribe link from the header opened a page that let me unsubscribe
 - The opener, first name, and company merged correctly, with no stray characters
 - The messages went out as plain text
-- All three test messages reached my inbox [Primary tab / Promotions tab: fill in what you saw], not spam
+- All three test messages reached my inbox Primary tab, not spam
 
 ![Authentication results](headers-pass.png)
 ![Unsubscribe headers](unsubscribe-headers.png)
