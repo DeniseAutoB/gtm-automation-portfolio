@@ -1,0 +1,8 @@
+first_name,last_name,email,company,website
+  alex ,TESTER,ALEX.TESTER@example.com,EXAMPLE AGENCY ONE,www.exampleone.com/?utm_source=newsletter&utm_medium=email
+Sam,tester,sam.tester@example.com,example agency two,https://exampletwo.com/
+Jo,Tester,jo.tester@example.com,Example Agency Three,exampletwo.com/about/?fbclid=abc123
+alex,Tester,alex.tester@example.com,Example Agency One,https://www.exampleone.com
+Pat,Sample,pat.sample@@example.com,Sample Co,sampleco.com
+,Nofirst,nofirst@example.com,No First Name Ltd,nofirst.com
+Lee,Example,,Missing Email LLC,missingemail.com

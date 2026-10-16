@@ -1,0 +1,7 @@
+first_name,last_name,email,company,website,flags
+Alex,Tester,alex.tester@example.com,Example Agency One,https://exampleone.com,
+Sam,Tester,sam.tester@example.com,Example Agency Two,https://exampletwo.com,
+Jo,Tester,jo.tester@example.com,Example Agency Three,https://exampletwo.com/about,
+Pat,Sample,pat.sample@@example.com,Sample Co,https://sampleco.com,invalid_email
+,Nofirst,nofirst@example.com,No First Name Ltd,https://nofirst.com,missing_first_name
+Lee,Example,,Missing Email LLC,https://missingemail.com,missing_email

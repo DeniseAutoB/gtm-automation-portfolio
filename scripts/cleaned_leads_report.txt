@@ -1,0 +1,7 @@
+Rows in: 7
+Rows out: 6
+Duplicates removed (by email): 1
+Invalid emails flagged: 1
+Rows missing a required field: 2
+Websites tidied: 6
+Rows with any flag: 3
