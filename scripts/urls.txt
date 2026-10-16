@@ -1,0 +1,4 @@
+# Only pages that are meant to be public and that allow fetching.
+https://example.com
+https://example.org
+https://gtm-engineer-portfolio.replit.app

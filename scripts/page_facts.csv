@@ -1,0 +1,4 @@
+url,status,title,description,fetched_at,note
+https://example.com,,,,,skipped (could not read robots.txt)
+https://example.org,,,,,skipped (could not read robots.txt)
+https://gtm-engineer-portfolio.replit.app,,,,,skipped (disallowed by robots.txt)
